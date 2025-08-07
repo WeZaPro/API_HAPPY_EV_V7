@@ -186,7 +186,7 @@ exports.uploadEmailResults = async (req, res) => {
         price_send: cleanTotal,
         trip_type: "go",
         trip_date: today,
-        status_paid_taxi: false,
+        status_paid_taxi: true,
       });
     }
 
