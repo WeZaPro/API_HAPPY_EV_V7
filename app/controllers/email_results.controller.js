@@ -63,8 +63,8 @@ exports.uploadEmailResults = async (req, res) => {
             Booking_ID, Booking_Date, Agent_Booking_Id, Customer_Name, Image_Url,
             AGENT_NAME, AGENT_STAFF_ID, EMAIL, PHONE, START, DESTINATION,
             RETURN_back, PRICE, Date_go, TAXI_id_go, TAXI_lpr_go, Status_go, 
-            Date_back, TAXI_id_back, Status_back, Job_status,PAID_go
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            Date_back, TAXI_id_back, Status_back, Job_status,PAID_go,CONFIRM_go
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `,
         [
           bookingIdGen,
@@ -89,6 +89,7 @@ exports.uploadEmailResults = async (req, res) => {
           "none",
           "complete",
           1,
+          "ok",
         ]
       );
 
