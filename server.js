@@ -2,8 +2,10 @@ require("dotenv").config(); // โหลด .env ไฟล์
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
+const fs = require("fs");
 
 const path = require("path");
+const uploadDir = "form-attachments";
 
 // const dbConfig = require("./app/config/db.config");
 
@@ -73,6 +75,16 @@ db.sequelize.sync().then(() => {
   // initial(); // <- เพิ่มตรงนี้
 });
 
+//contactForm
+// static path สำหรับไฟล์แนบ
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+app.use(
+  "/form-attachments",
+  express.static(path.join(__dirname, "form-attachments"))
+);
+
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
@@ -80,6 +92,9 @@ require("./app/routes/company.routes")(app);
 require("./app/routes/taxiDriver.routes")(app);
 require("./app/routes/staffDriver.routes")(app);
 require("./app/routes/taxiTransaction.routes")(app);
+
+// เรียกใช้ Router formcontact
+app.use("/api", require("./app/routes/contactForm.routes"));
 
 // import routes
 const seatranRoutes = require("./app/routes/seatran.route");
