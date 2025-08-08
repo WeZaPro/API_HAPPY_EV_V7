@@ -92,6 +92,7 @@ require("./app/routes/company.routes")(app);
 require("./app/routes/taxiDriver.routes")(app);
 require("./app/routes/staffDriver.routes")(app);
 require("./app/routes/taxiTransaction.routes")(app);
+// require("./app/routes/reportHappyData.routes")(app); // ✅ เรียกใช้เป็นฟังก์ชัน
 
 // เรียกใช้ Router formcontact
 app.use("/api", require("./app/routes/contactForm.routes"));
@@ -120,6 +121,9 @@ app.use("/api/review", reviewRoutes);
 
 const adminController = require("./app/routes/adminControl.route");
 app.use("/", adminController);
+
+const reportController = require("./app/routes/reportHappyData.routes");
+app.use("/api/report", reportController);
 
 require("./app/routes/location.route")(app); // ✅ ส่ง app เข้าไป
 
