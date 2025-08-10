@@ -11,6 +11,10 @@ const uploadDir = "form-attachments";
 
 const app = express();
 
+// ต้องแยก raw body สำหรับ Stripe webhook
+const webhookRoutes = require("./app/routes/webhook.routes");
+app.use(webhookRoutes);
+
 // const JWT_SECRET = process.env.JWT_SECRET;
 // const COOKIES_NAME = process.env.COOKIES_NAME;
 
@@ -24,6 +28,7 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://booking.wezaapidev.com",
   "https://liff.happyevtravelandtransfer.com",
+  "http://127.0.0.1:5500",
 ];
 
 const corsOptions = {
@@ -124,6 +129,9 @@ app.use("/", adminController);
 
 const reportController = require("./app/routes/reportHappyData.routes");
 app.use("/api/report", reportController);
+
+const orderRoutes = require("./app/routes/order.routes");
+app.use("/orders", orderRoutes);
 
 require("./app/routes/location.route")(app); // ✅ ส่ง app เข้าไป
 

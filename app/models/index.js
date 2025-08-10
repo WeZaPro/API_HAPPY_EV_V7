@@ -29,6 +29,7 @@ db.route_pair = require("./routePair.model.js")(sequelize, Sequelize);
 
 db.contactForm = require("./contactForm.model.js")(sequelize, Sequelize);
 db.happyData = require("./happyData.model")(sequelize, Sequelize);
+db.order = require("./order.model")(sequelize, Sequelize);
 
 db.taxiDriver = require("./taxiDriver.model.js")(sequelize, Sequelize);
 db.staffDriver = require("./staffDriver.model.js")(sequelize, Sequelize);
